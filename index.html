@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <script src="https://kit.fontawesome.com/fca2830fa6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="container">
+        <div class="header">
+            <span class="heading">Temperature Converter</span>
+            <span class="icon"> <i class="fas fa-temperature-high"></i></span>
+        </div>
+        <div class="symbol">
+            <span>&#8451 &#8457</span>
+            <span class="icon">
+                <i class="fas fa-cloud-sun-rain"></i>
+            </span>
+        </div>
+
+        <div class="input-temperature">
+            <div class="celsius">
+                <span class="text-celsius">Celsius &#8451</span>
+                <input type="number" value="0" id="celsius">
+            </div>
+            <div class="fahrenheit">
+                <span class="text-fahrenheit">Fahrenheit &#8457</span>
+                <input type="number" value="32" id="fahrenheit">
+            </div>
+            <div class="kelvin">
+                <span class="text-kelvin">Kelvin &#8490</span>
+                <input type="number" value="273.15" id="kelvin">
+            </div>
+            
+        </div>
+        <div class="button">
+            <button id="clear">Clear</button>
+        </div>
+   </div> 
+</body>
+<script>
+    var celsius=document.getElementById("celsius");
+    var fahrenheit=document.getElementById("fahrenheit");
+    var kelvin=document.getElementById("kelvin");
+    var btn=document.getElementById("clear");
+    celsius.addEventListener('input', function(){
+        let cel=this.value;
+        let fah=(cel*9/5)+32;
+        let kel=cel+273.15;
+        if(!Number.isInteger(fah) && !Number.isInteger(kel)){
+            fah=fah.toFixed(4);
+            kel=kel.toFixed(4);
+        }
+        fahrenheit.value=fah;
+        kelvin.value=kel;
+    });
+    fahrenheit.addEventListener('input',function(){
+        let fah=this.value;
+        let cel=(fah-32)*5/9;
+        let kel= 5/9 * (fah - 32) + 273.15;
+        if(!Number.isInteger(cel)&&!Number.isInteger(kel)){
+            cel=cel.toFixed(4);
+            kel=kel.toFixed(4);
+        }
+        celsius.value=cel;
+        kelvin.value=kel;
+    });
+    kelvin.addEventListener('input',function(){
+        let kel=this.value;
+        let fah=(kel-273.15 ) *9/5+32;
+        let cel=kel-273.15;
+        if(!Number.isInteger(cel) &&!Number.isInteger(fah)){
+            cel=cel.toFixed(4);
+            fah=fah.toFixed(4);
+
+        }
+        celsius.value=cel;
+        fahrenheit.value=fah;
+    });
+
+    btn.addEventListener('click',function(){
+        celsius.value=" ";
+        fahrenheit.value=" ";
+        kelvin.value=" ";
+
+    });
+
+</script>
+</html>
